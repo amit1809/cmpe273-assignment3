@@ -19,6 +19,14 @@ class MyDict(dict):
         #value = self[deserialize(key)]
         return value
 
+    def delete(self, key):
+        try:
+            del self[key.decode()]
+        except KeyError:
+            return "KEY NOT FOUND"
+
+        return "SUCCESS"
+
 class UDPServer():
     def __init__(self, host, port):
         self.host = host
@@ -43,8 +51,13 @@ class UDPServer():
             # TODO: PART I - implement GET retrieval from self.db.xxxxx
             #return 'FIX_ME'.encode()
             return serialize(self.db.get(key))
+
         elif operation == 'PUT':
             return self.db.put(key, value)
+
+        elif operation == 'DELETE':
+            return self.db.delete(key)
+
         else:
             print(f'Error: Invalid operation={operation}')
             return 'Not supported operation={}'.format(operation)
