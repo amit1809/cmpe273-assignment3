@@ -1,16 +1,10 @@
-import sys
 import socket
-
 from sample_data import USERS
 from server_config import NODES
 from pickle_hash import serialize_GET, serialize_PUT, deserialize, serialize_DELETE
 from node_ring import NodeRing
-'''
-ring = NodeRing(nodes=NODES)
-    node = ring.get_node('9ad5794ec94345c4873c4e591788743a')
-    print(node)
-    print(ring.get_node('ed9440c442632621b608521b3f2650b8'))
-'''
+
+
 BUFFER_SIZE = 1024
 
 class UDPClient():
@@ -69,7 +63,6 @@ def process(udp_clients):
         fix_me_server_id = NODES.index(ring.get_node(key))
         response = udp_clients[fix_me_server_id].send(data_bytes)
         print(response)
-
 
 if __name__ == "__main__":
     clients = [
