@@ -14,7 +14,7 @@ def lru_cache(cache_size):
                 if key in cache:
                     print("In LRU Cache GET")
                     cache.move_to_end(key) #move key to the end to make it most recent
-                    print(cache[key])
+                    #print(cache[key])
                     return cache[key]
 
             elif func.__name__ == "put":
