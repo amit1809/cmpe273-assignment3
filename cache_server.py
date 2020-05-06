@@ -25,7 +25,7 @@ class MyDict(dict):
         except KeyError:
             return "KEY NOT FOUND"
 
-        return "SUCCESS"
+        return "DELETE SUCCESS"
 
 class UDPServer():
     def __init__(self, host, port):

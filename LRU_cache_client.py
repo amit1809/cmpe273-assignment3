@@ -67,6 +67,10 @@ def get_key_value(ALL_USERS):
     return keys_list_put, data_byte_list_put
 
 def test_lru():
+    '''
+    This is to test LRU cache and Bloom Filter implementations by running calling put, get and delete in sequence
+    '''
+
     # get all keys and values from sample data in a list
     keys_list_put, data_byte_list_put = get_key_value(USERS)
 
@@ -88,10 +92,8 @@ def test_lru():
     get(keys_list_put[2])  # will not find this key value in cache, will get it from server
     get(keys_list_put[1])
 
-    #put(keys_list_put[4], data_byte_list_put[4])  # this PUT will delete key 0 from LRU cache
     get(keys_list_put[0]) # will not find this key value in cache, will get it from server
     get(keys_list_put[3])
-    #get(keys_list_put[4])
     get(keys_list_put[1])
 
     delete(keys_list_put[1])
