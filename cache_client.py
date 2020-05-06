@@ -25,13 +25,13 @@ class UDPClient():
 
 
 def process(udp_clients):
+    ring = NodeRing(nodes=NODES)
     hash_codes = set()
     # PUT all users.
     for u in USERS:
         data_bytes, key = serialize_PUT(u)
         # TODO: PART II - Instead of going to server 0, use Naive hashing to split data into multiple servers
         #fix_me_server_id = 0
-        ring = NodeRing(nodes=NODES)
         fix_me_server_id = NODES.index(ring.get_node(key))
         print(f"Server id: {fix_me_server_id}")
         response = udp_clients[fix_me_server_id].send(data_bytes)
@@ -46,9 +46,6 @@ def process(udp_clients):
     for hc in hash_codes:
         print(f"GET:{hc}")
         data_bytes, key = serialize_GET(hc)
-        #fix_me_server_id = 0
-        ring = NodeRing(nodes=NODES)
-        #
         fix_me_server_id = NODES.index(ring.get_node(key))
         response = udp_clients[fix_me_server_id].send(data_bytes)
         #print(deserialize(response))
@@ -58,8 +55,6 @@ def process(udp_clients):
     for hc in hash_codes:
         # print(hc)
         data_bytes, key = serialize_DELETE(hc)
-        # fix_me_server_id = 0
-        ring = NodeRing(nodes=NODES)
         fix_me_server_id = NODES.index(ring.get_node(key))
         response = udp_clients[fix_me_server_id].send(data_bytes)
         print(response)
