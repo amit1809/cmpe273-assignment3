@@ -10,11 +10,11 @@ from bloom_filter import BloomFilter
 BUFFER_SIZE = 1024
 LRU_CACHE_SIZE = 3
 hash_codes = set()
-BLOOM_FILTER_ARRAY_SIZE = 500
-BLOOM_FILTER_NO_OF_HASHES = 3
+BLOOM_FILTER_KEY_SIZE = 20
+BLOOM_FILTER_FALSE_POSITIVE_PROB = 0.05
 
 ring = NodeRing(nodes=NODES)
-bloom_f = BloomFilter(BLOOM_FILTER_ARRAY_SIZE, BLOOM_FILTER_NO_OF_HASHES)
+bloom_f = BloomFilter(BLOOM_FILTER_KEY_SIZE, BLOOM_FILTER_FALSE_POSITIVE_PROB)
 
 @lru_cache(LRU_CACHE_SIZE)
 def get(key):
@@ -49,7 +49,7 @@ def delete(key):
         data_bytes, key_ser = serialize_DELETE(key.encode())
         fix_me_server_id = NODES.index(ring.get_node(key_ser))
         response = clients[fix_me_server_id].send(data_bytes)
-        print(response)
+        #print(response)
         return response
     else:
         print("### KEY FOR DELETE NOT FOUND IN BLOOM FILTER ###")
@@ -74,30 +74,30 @@ def test_lru():
 
     # Test LRU cache
     put(keys_list_put[0], data_byte_list_put[0])
-    get(keys_list_put[0])
+    print(get(keys_list_put[0]))
 
     put(keys_list_put[1], data_byte_list_put[1])
-    get(keys_list_put[1])
+    print(get(keys_list_put[1]))
 
     put(keys_list_put[2], data_byte_list_put[2])
-    get(keys_list_put[2])
-    get(keys_list_put[1])
-    get(keys_list_put[0])
+    print(get(keys_list_put[2]))
+    print(get(keys_list_put[1]))
+    print(get(keys_list_put[0]))
 
     put(keys_list_put[3], data_byte_list_put[3])  # this PUT will delete key 2 from LRU cache
-    get(keys_list_put[0])
-    get(keys_list_put[3])
-    get(keys_list_put[2])  # will not find this key value in cache, will get it from server
-    get(keys_list_put[1])
+    print(get(keys_list_put[0]))
+    print(get(keys_list_put[3]))
+    print(get(keys_list_put[2]))  # will not find this key value in cache, will get it from server
+    print(get(keys_list_put[1]))
 
-    get(keys_list_put[0]) # will not find this key value in cache, will get it from server
-    get(keys_list_put[3])
-    get(keys_list_put[1])
+    print(get(keys_list_put[0])) # will not find this key value in cache, will get it from server
+    print(get(keys_list_put[3]))
+    print(get(keys_list_put[1]))
 
-    delete(keys_list_put[1])
+    print(delete(keys_list_put[1]))
 
-    get(keys_list_put[4]) # Key not available on bloom filter
-    delete(keys_list_put[4]) # Key not available on bloom filter
+    print(get(keys_list_put[4])) # Key not available on bloom filter
+    print(delete(keys_list_put[4])) # Key not available on bloom filter
 
 
 if __name__ == "__main__":
