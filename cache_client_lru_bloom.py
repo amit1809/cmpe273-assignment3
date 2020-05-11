@@ -4,7 +4,7 @@ from server_config import NODES
 from pickle_hash import serialize_GET, serialize_PUT, deserialize, serialize_DELETE
 from node_ring import NodeRing
 from cache_client import UDPClient
-from lru_cache_deco import lru_cache
+from lru_cache import lru_cache
 from bloom_filter import BloomFilter
 
 BUFFER_SIZE = 1024
@@ -87,14 +87,11 @@ def test_lru():
     put(keys_list_put[3], data_byte_list_put[3])  # this PUT will delete key 2 from LRU cache
     print(get(keys_list_put[0]))
     print(get(keys_list_put[3]))
+    print(get(keys_list_put[1]))
     print(get(keys_list_put[2]))  # will not find this key value in cache, will get it from server
-    print(get(keys_list_put[1]))
 
-    print(get(keys_list_put[0])) # will not find this key value in cache, will get it from server
-    print(get(keys_list_put[3]))
-    print(get(keys_list_put[1]))
 
-    print(delete(keys_list_put[1]))
+    print(delete(keys_list_put[1])) # delete key 1
 
     print(get(keys_list_put[4])) # Key not available on bloom filter
     print(delete(keys_list_put[4])) # Key not available on bloom filter
