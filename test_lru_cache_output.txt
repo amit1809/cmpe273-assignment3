@@ -1,0 +1,38 @@
+(base) aarav@aarav-lavit:~/Amit/SJSU/CMPE_273/ASSIGNMENTS/cmpe273-assignment3$ python3 test_lru_cache.py 
+[cache-missed]fibonacci(0) -> 0
+[cache-missed]fibonacci(1) -> 1
+[cache-missed]fibonacci(2) -> 1
+[cache-hit]fibonacci(1) -> 1
+[cache-hit]fibonacci(2) -> 1
+[cache-missed]fibonacci(3) -> 2
+[cache-missed]fibonacci(4) -> 3
+[cache-hit]fibonacci(3) -> 2
+[cache-hit]fibonacci(4) -> 3
+[cache-missed]fibonacci(5) -> 5
+[cache-missed]fibonacci(6) -> 8
+fibonacci(6)=8
+
+[cache-missed]get_data(1) -> {'id': 1, 'value': 'Foo Bar - 1'}
+{'id': 1, 'value': 'Foo Bar - 1'}
+[cache-missed]get_data(2) -> {'id': 2, 'value': 'Foo Bar - 2'}
+{'id': 2, 'value': 'Foo Bar - 2'}
+[cache-missed]get_data(3) -> {'id': 3, 'value': 'Foo Bar - 3'}
+{'id': 3, 'value': 'Foo Bar - 3'}
+[cache-missed]get_data(4) -> {'id': 4, 'value': 'Foo Bar - 4'}
+{'id': 4, 'value': 'Foo Bar - 4'}
+[cache-hit]get_data(1) -> {'id': 1, 'value': 'Foo Bar - 1'}
+{'id': 1, 'value': 'Foo Bar - 1'}
+[cache-hit]get_data(2) -> {'id': 2, 'value': 'Foo Bar - 2'}
+{'id': 2, 'value': 'Foo Bar - 2'}
+[cache-hit]get_data(3) -> {'id': 3, 'value': 'Foo Bar - 3'}
+{'id': 3, 'value': 'Foo Bar - 3'}
+[cache-hit]get_data(4) -> {'id': 4, 'value': 'Foo Bar - 4'}
+{'id': 4, 'value': 'Foo Bar - 4'}
+[cache-missed]get_data(5) -> {'id': 5, 'value': 'Foo Bar - 5'}
+{'id': 5, 'value': 'Foo Bar - 5'}
+[cache-missed]get_data(6) -> {'id': 6, 'value': 'Foo Bar - 6'}
+{'id': 6, 'value': 'Foo Bar - 6'}
+Num of function calls:10
+Num of cache misses:6
+(base) aarav@aarav-lavit:~/Amit/SJSU/CMPE_273/ASSIGNMENTS/cmpe273-assignment3$ 
+
