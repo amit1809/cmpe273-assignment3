@@ -18,9 +18,9 @@ k hashes count is calculated from m and n as per below:
 k = (m / n) * math.log(2)
 ```
 
-So with above formulas considering false positive rate (p) of 0.05, below m and h values for one million n keys:
+So with above formulas considering false positive rate (p) of 0.05, below m bits and k hashes for one million n keys:
 
 ```
 m = 6235224
-h = 4
+k = 4
 ```
