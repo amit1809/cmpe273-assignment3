@@ -3,7 +3,7 @@ from sample_data import USERS
 from server_config import NODES
 from pickle_hash import serialize_GET, serialize_PUT, deserialize, serialize_DELETE
 from node_ring import NodeRing
-from cache_client import UDPClient
+from cache_client_delete import UDPClient
 from lru_cache import lru_cache
 from bloom_filter import BloomFilter
 
